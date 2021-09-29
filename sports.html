@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPORTS</title>
+</head>
+
+<body>
+    <script>
+
+var body = document.querySelector("body");
+        var navBar = document.createElement("div");
+        var divBar = document.createElement("div");
+        var divBar2 = document.createElement("div");
+        var divBar3 = document.createElement("div");
+        var divBar4 = document.createElement("div");
+
+        var a = document.createElement("a");
+        var a2 = document.createElement("a");
+        var a3 = document.createElement("a");
+        var a4 = document.createElement("a");
+        navBar.style.width = "100%";
+        navBar.style.display = "flex";
+        a4.textContent = "Home"
+        a4.href = "newsApi2.html"
+        a.textContent = "Sports"
+        a.href = "sports.html"
+        a2.textContent = "Entertainment"
+        a2.href = "entertainment.html"
+        a3.textContent = "Technology"
+        
+        a3.href = "tech.html"
+        
+
+        a.style.width = 80 + "px";
+        a.style.height = 30 + "px";
+        a.style.textDecoration = "none";
+        divBar4.append(a4);
+        divBar.append(a);
+        divBar2.append(a2);
+        divBar3.append(a3);
+        
+
+        navBar.style.padding = "auto"
+        navBar.style.paddingTop = "20px"
+        navBar.style.paddingLeft = "20%"
+        navBar.style.border = "2px solid black"
+        navBar.style.fontSize = "20px"
+        navBar.style.fontWeight = "600"
+        navBar.style.padding = "auto"
+        navBar.style.textAlign = "center";
+        a2.style.textDecoration = "none";
+        a3.style.textDecoration = "none";
+        a4.style.textDecoration = "none";
+
+        divBar.style.width = "16%"
+        divBar.style.borderRadius = "10px"
+        divBar2.style.borderRadius = "10px"
+        divBar3.style.borderRadius = "10px"
+        divBar4.style.borderRadius = "10px"
+        divBar.style.backgroundColor = "yellow"
+        divBar2.style.backgroundColor = "yellow"
+        divBar3.style.backgroundColor = "yellow"
+        divBar4.style.backgroundColor = "yellow"
+        a.style.color = "black"
+        a2.style.color = "black"
+        a3.style.color = "black"
+        a4.style.color = "black"
+        divBar.style.paddingTop = "10px"
+        divBar2.style.paddingTop = "10px"
+        divBar3.style.paddingTop = "10px"
+        divBar4.style.paddingTop = "10px"
+        divBar2.style.width = "14%"
+        divBar3.style.width = "14%"
+        divBar4.style.width = "14%"
+        divBar2.style.marginLeft = "10px"
+        divBar3.style.marginRight = "20px"
+        //divBar4.style.marginRight = "20px"
+        divBar2.style.marginRight = "10px"
+        divBar.style.height = "40px"
+        divBar2.style.height = "40px"
+        divBar3.style.height = "40px"
+        divBar4.style.height = "40px"
+        navBar.style.height = "70px"
+        navBar.style.paddingDown = "20px"
+        navBar.append(divBar, divBar2, divBar3, divBar4);
+        body.append(navBar);
+
+
+        async function newsApi(){
+            let res = await fetch('https://newsapi.org/v2/everything?q=sports&from=2021-09-29&sortBy=sports&apiKey=9911b758d8984593a3506a2cc8073c77');
+            let news = await res.json();
+            news = news.articles;
+            createNewsHeadLines(news);
+        }
+        newsApi()
+       var outerDiv = document.createElement("div");
+       const h3 = document.createElement("h1")
+       h3.textContent = "SPORTS NEWS";
+       h3.style.textAlign = "center";
+       h3.style.backgroundColor = "black";
+       h3.style.color = "white";
+       outerDiv.append(h3);
+       function createNewsHeadLines(news){
+               for(var data of news){
+                   var insideDiv = document.createElement("div")
+                   var headLines = document.createElement("h4");
+                   headLines.textContent = (data.title);
+                   headLines.style.textAlign = "left"
+                   headLines.style.marginLeft = 15+"%";
+                   headLines.style.fontSize = 25+"px";
+
+                   var content = document.createElement("p");
+                   content.textContent = data.content;
+                   content.style.textAlign = "center"
+                   content.style.marginLeft = 15+"%"
+                   content.style.marginRight = 15+"%"
+                   insideDiv.append(headLines,content);
+                   insideDiv.style.border = 1+"px dashed grey"
+                   outerDiv.append(insideDiv);
+
+               }
+               let body = document.querySelector("body");
+               body.backgroundColor = "wheat"
+               body.append(outerDiv);
+           }
+    </script>
+
+</body>
+
+</html>
