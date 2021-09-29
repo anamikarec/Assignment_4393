@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEWS API 1</title>
+</head>
+<body>
+    <script>
+        async function news(){
+            let res = await fetch("https://newsapi.org/v2/everything?q=India&from=2021-09-29&sortBy=popularity&apiKey=9911b758d8984593a3506a2cc8073c77");
+            let data = await res.json();
+            data = data.articles;
+            //console.log(data);
+            makeHeadlines(data);
+        }
+        news()
+
+        const container = document.createElement('div');
+        const h2 = document.createElement('h2');
+        h2.textContent = "Today Headlines of Indian News";
+        h2.style.textAlign = 'center'
+        //h2.style.height = 50+'px';
+        h2.style.textAlign = 'center'
+        h2.style.alignItems = 'center'
+        
+
+        h2.style.color = 'white'
+        h2.style.backgroundColor = 'black'
+        container.append(h2);
+        const body = document.querySelector('body');
+        function makeHeadlines(data){
+                for(var newsData of data){
+                    console.log(newsData);
+                    var headlines = document.createElement('h3');
+                    headlines.textContent = newsData.title;
+                    headlines.style.border = 1+"px dashed grey";
+                    headlines.style.margin = 5+"px";
+                    //headlines.style.width = 70+"%";
+                    //headlines.style.textAlign = "center";
+                    //headlines.style.color = 'white';
+                    headlines.style.backgroundColor = 'whitesmoke';
+                    headlines.style.margin = 5+"px";
+                    headlines.style.padding = 5+"px";
+    
+                    container.append(headlines);
+                    if(newsData.title === 'Vlad')
+                    break;
+                }
+            body.append(container);
+        }
+    </script>
+</body>
+</html>
