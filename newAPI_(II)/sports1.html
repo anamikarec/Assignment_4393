@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPORTS</title>
+</head>
+
+<body>
+    <script>
+
+var body = document.querySelector("body");
+        var nav = document.createElement("div");
+        var div = document.createElement("div");
+        var div2 = document.createElement("div");
+        var div3 = document.createElement("div");
+        var div4 = document.createElement("div");
+
+        var a = document.createElement("a");
+        var a2 = document.createElement("a");
+        var a3 = document.createElement("a");
+        var a4 = document.createElement("a");
+        nav.style.width = "100%";
+        nav.style.display = "flex";
+        
+        a.textContent = "HOME"
+        a.href = "newsAPI11.html"
+        a2.textContent = "SPORTS"
+        a2.href = "sports1.html"
+        a3.textContent = "Technology"
+        a4.textContent = "ENTERTAINMENT"
+        a3.href = "tech1.html"
+        a4.href = "enter11.html"
+        
+        
+
+        a.style.width = 80 + "px";
+        a.style.height = 30 + "px";
+        a.style.textDecoration = "none";
+        div4.append(a4);
+        div.append(a);
+        div2.append(a2);
+        div3.append(a3);
+        
+
+        nav.style.padding = "auto"
+        nav.style.paddingTop = "20px"
+        nav.style.paddingLeft = "20%"
+        nav.style.border = "2px solid black"
+        nav.style.fontSize = "20px"
+        nav.style.fontWeight = "600"
+        nav.style.padding = "auto"
+        nav.style.textAlign = "center";
+        a2.style.textDecoration = "none";
+        a3.style.textDecoration = "none";
+        a4.style.textDecoration = "none";
+
+        div.style.width = "16%"
+        div.style.borderRadius = "10px"
+        div2.style.borderRadius = "10px"
+        div3.style.borderRadius = "10px"
+        div4.style.borderRadius = "10px"
+        div.style.backgroundColor = "yellow"
+        div2.style.backgroundColor = "yellow"
+        div3.style.backgroundColor = "yellow"
+        div4.style.backgroundColor = "yellow"
+        a.style.color = "black"
+        a2.style.color = "black"
+        a3.style.color = "black"
+        a4.style.color = "black"
+        div.style.paddingTop = "10px"
+        div2.style.paddingTop = "10px"
+        div3.style.paddingTop = "10px"
+        div4.style.paddingTop = "10px"
+        div2.style.width = "14%"
+        div3.style.width = "14%"
+        div4.style.width = "14%"
+        div2.style.marginLeft = "10px"
+        div3.style.marginRight = "20px"
+        div2.style.marginRight = "10px"
+        div.style.border= "5px dashed grey"
+        div2.style.border = "5px dashed grey"
+        div3.style.border = "5px dashed grey"
+        div4.style.border = "5px dashed grey"
+        div.style.height = "40px"
+        div2.style.height = "40px"
+        div3.style.height = "40px"
+        div4.style.height = "40px"
+        nav.style.height = "70px"
+        nav.style.paddingDown = "20px"
+        nav.append(div, div2, div3, div4);
+        body.append(nav);
+
+
+        async function newapi(){
+            var search = document.getElementById('search')
+        }
+
+
+        async function newsApi(){
+            let res = await fetch('https://newsapi.org/v2/everything?q=sports&from=2021-09-29&sortBy=sports&apiKey=9911b758d8984593a3506a2cc8073c77');
+            let news = await res.json();
+            news = news.articles;
+            createNewsHeadLines(news);
+        }
+        newsApi()
+       var outerDiv = document.createElement("div");
+       const h3 = document.createElement("h1")
+       h3.textContent = "SPORTS NEWS";
+       h3.style.textAlign = "center";
+       h3.style.backgroundColor = "black";
+       h3.style.color = "white";
+       outerDiv.append(h3);
+       function createNewsHeadLines(news){
+               for(var data of news){
+                   var insideDiv = document.createElement("div")
+                   var headLines = document.createElement("h4");
+                   headLines.textContent = (data.title);
+                   headLines.style.textAlign = "left"
+                   headLines.style.marginLeft = 15+"%";
+                   headLines.style.fontSize = 25+"px";
+
+                   var content = document.createElement("p");
+                   content.textContent = data.content;
+                   content.style.textAlign = "center"
+                   content.style.marginLeft = 15+"%"
+                   content.style.marginRight = 15+"%"
+                   insideDiv.append(headLines,content);
+                   insideDiv.style.border = 1+"px dashed grey"
+                   outerDiv.append(insideDiv);
+
+               }
+               let body = document.querySelector("body");
+               body.backgroundColor = "wheat"
+               body.append(outerDiv);
+           }
+    </script>
+
+</body>
+
+</html>
