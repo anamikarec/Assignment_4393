@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsAPI</title>
+</head>
+
+<body>
+    <script>
+        var parent = document.querySelector("body");
+        var nav = document.createElement("div");
+        var div = document.createElement("div");
+        var div2 = document.createElement("div");
+        var div3 = document.createElement("div");
+        var div4 = document.createElement("div");
+
+        var a = document.createElement("a");
+        var a2 = document.createElement("a");
+        var a3 = document.createElement("a");
+        var a4 = document.createElement("a");
+        nav.style.width = "100%";
+        nav.style.display = "flex";
+
+        a.textContent = "Home"
+        a.href = "newsAPI4.html"
+        a2.textContent = "Sports"
+        a2.href = "Sports3.html"
+        a3.textContent = "Technology"
+        a4.textContent = "Entertainment"
+        a3.href = "tech2.html"
+        a4.href = "enter2.html"
+
+        div.style.border = 1 + "px solid grey";
+        div2.style.border = 1 + "px solid grey";
+        div3.style.border = 1 + "px solid grey";
+        div4.style.border = 1 + "px solid grey";
+        a.style.width = 80 + "px";
+        a.style.height = 30 + "px";
+        a.style.textDecoration = "none";
+        div.append(a);
+        div2.append(a2);
+        div3.append(a3);
+        div4.append(a4);
+
+        nav.style.padding = "auto"
+        nav.style.paddingTop = "20px"
+        nav.style.paddingLeft = "6%"
+        nav.style.border = "2px solid black"
+        nav.style.fontSize = "20px"
+        nav.style.fontWeight = "600"
+        nav.style.padding = "auto"
+        nav.style.textAlign = "center";
+        a2.style.textDecoration = "none";
+        a3.style.textDecoration = "none";
+        a4.style.textDecoration = "none";
+
+        div.style.width = "14%"
+        div.style.borderRadius = "10px"
+        div2.style.borderRadius = "10px"
+        div3.style.borderRadius = "10px"
+        div4.style.borderRadius = "10px"
+        div.style.backgroundColor = "black"
+        div2.style.backgroundColor = "black"
+        div3.style.backgroundColor = "black"
+        div4.style.backgroundColor = "black"
+        a.style.color = "white"
+        a2.style.color = "white"
+        a3.style.color = "white"
+        a4.style.color = "white"
+        div.style.paddingTop = "10px"
+        div2.style.paddingTop = "10px"
+        div3.style.paddingTop = "10px"
+        div4.style.paddingTop = "10px"
+        div2.style.width = "14%"
+        div3.style.width = "14%"
+        div4.style.width = "14%"
+        div2.style.marginLeft = "10px"
+        div3.style.marginRight = "20px"
+        div2.style.marginRight = "10px"
+        div.style.height = "40px"
+        div2.style.height = "40px"
+        div3.style.height = "40px"
+        div4.style.height = "40px"
+
+
+
+// Implementing search Bar in nav bar 
+        var input = document.createElement('input');
+        input.placeholder = " 🔍 Type here";
+        input.type = "text";
+        input.style.height = "101%"
+        input.style.width = "101%"
+        input.style.fontSize = "22px"
+        div5 = document.createElement("div");
+        div5.style.height = "40px"
+        div5.style.marginRight = "20px"
+        div5.style.width = "14%"
+        input.style.borderRadius = "10px"
+        input.style.border = "3px solid blue";
+        input.id = "searchText";
+        div5.append(input);
+        nav.append(div5);
+        nav.style.border = "1px dashed grey";
+
+        var searchButton = document.createElement('button');
+        searchButton.style.height = "101%"
+        searchButton.textContent = "SEARCH"
+        searchButton.style.width = "101%"
+        searchButton.style.color = "white"
+        searchButton.style.fontSize = "15px";
+        searchButton.style.backgroundColor = "black"
+        div5 = document.createElement("div");
+        div5.style.height = "50px"
+        div5.style.marginRight = "20px"
+        div5.style.width = "8%"
+        searchButton.style.borderRadius = "10px"
+        searchButton.style.border = "3px solid blue";
+        searchButton.id = "searchText";
+        div5.append(searchButton);
+        nav.append(div5);
+
+
+        searchButton.addEventListener("click", function(){
+            var searchText = document.getElementById("searchText").value;
+            if(!searchText){
+                alert("Please Enter text to search");
+            }
+            else{
+               newsApi(searchText);
+            }
+        })
+
+
+
+
+        nav.style.height = "70px"
+        nav.style.paddingDown = "20px"
+        nav.append(div, div2, div3, div4);
+        parent.append(nav);
+
+
+        async function newsApi(search){
+            var link = "http://newsapi.org/v2/everything?q=" + search +"&from=2021-09-29&sortBy=popularity&apiKey=9911b758d8984593a3506a2cc8073c77";
+            // console.log(link);
+            let res = await fetch(link);
+            let news = await res.json();
+            news = news.articles;
+            createNewsHeadLines(news);
+        }
+        newsApi("India")
+
+
+       var outerDiv = document.createElement("div");
+       const h3 = document.createElement("h1")
+       h3.textContent = "Today TOP Headlines Of Indian News";
+       h3.style.textAlign = "center";
+       h3.style.backgroundColor = "black";
+       h3.style.color = "white";
+       outerDiv.append(h3);
+
+      
+       function createNewsHeadLines(news){
+        var lineNumber=1;
+           outerDiv.innerHTML= "";
+               for(var data of news){
+                   var headLines = document.createElement("h4");
+                   headLines.textContent = (lineNumber++) +" . "+ (data.title);
+                   headLines.style.textAlign = "left"
+                   headLines.style.marginLeft = 15+"%";
+                   headLines.style.fontSize = 25+"px";
+                   outerDiv.append(headLines);
+
+               }
+               let parent = document.querySelector("body");
+               parent.style.backgroundColor = "cornsilk"
+               parent.append(outerDiv);
+           }
+    </script>
+
+</body>
+
+</html>
